@@ -1,0 +1,9 @@
+#!/usr/bin/env okshell
+
+var loc = location();
+
+var cost = query("https://api.lyft.com/v1/cost?start_lat=${loc.latitude}&start_lng=${loc.longitude}&end_lat=37.4875929&end_lng=-122.1462192");
+
+cost.cost_estimates.forEach(function(estimate) {
+    print(estimate.display_name + " (+" + estimate.primetime_percentage + ") cost " + estimate.estimated_cost_cents_min);
+});
